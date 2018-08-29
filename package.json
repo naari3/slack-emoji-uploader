@@ -7,6 +7,7 @@
     "build": "babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
+    "lint": "prettier-eslint --write src/**/*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "naari3 <naari.named@gmail.com>",
@@ -14,6 +15,11 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0"
+    "@babel/preset-env": "^7.0.0",
+    "eslint": "^5.4.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "prettier": "^1.14.2",
+    "prettier-eslint-cli": "^4.7.1"
   }
 }
