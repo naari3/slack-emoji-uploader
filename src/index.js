@@ -2,23 +2,30 @@ const cheerio = require("cheerio");
 const axios = require("axios");
 const FormData = require("form-data");
 
+const urljoin = require("url-join");
+
 const axiosCookieJarSupport = require("@3846masa/axios-cookiejar-support")
   .default;
 const tough = require("tough-cookie");
 
 axiosCookieJarSupport(axios);
 
+const SLACK_DOMAIN = "slack.com";
+const SLACK_LOGIN_FORM = "?no_sso=1";
+const SLACK_EMOJI_LIST = "admin/emoji";
+const SLACK_EMOJI_ADD_API = "api/emoji.add";
+
 class SlackTokenGetter {
   constructor(subdomain) {
     this.subdomain = subdomain;
-    this.domain = `${subdomain}.slack.com`;
+    this.origin = `https://${subdomain}.${SLACK_DOMAIN}`;
     this.jar = new tough.CookieJar();
     this.tokenData;
     this.apiToken;
   }
 
   async token() {
-    const response = await axios.get(`https://${this.domain}/?no_sso=1`, {
+    const response = await axios.get(urljoin(this.origin, SLACK_LOGIN_FORM), {
       jar: this.jar,
       withCredentials: true
     });
@@ -37,7 +44,7 @@ class SlackTokenGetter {
     );
     try {
       await axios.request({
-        url: `https://${this.domain}/?no_sso=1`,
+        url: urljoin(this.origin, SLACK_LOGIN_FORM),
         method: "post",
         data: params,
         jar: this.jar,
@@ -53,7 +60,7 @@ class SlackTokenGetter {
   }
 
   async emoji() {
-    const response = await axios.get(`https://${this.domain}/admin/emoji`, {
+    const response = await axios.get(urljoin(this.origin, SLACK_EMOJI_LIST), {
       jar: this.jar,
       withCredentials: true
     });
@@ -67,7 +74,7 @@ class SlackTokenGetter {
     form.append("image", image, `${name}.png`);
     form.append("token", this.apiToken);
     const response = await axios.request({
-      url: `https://${this.domain}/api/emoji.add`,
+      url: urljoin(this.origin, SLACK_EMOJI_ADD_API),
       method: "post",
       headers: form.getHeaders(),
       data: form,
