@@ -20,17 +20,17 @@ class SlackTokenGetter {
     this.origin = `https://${subdomain}.${SLACK_DOMAIN}`;
     this.jar = new tough.CookieJar();
     this.tokenData;
-    this.apiToken = apiToken;
+    this.apiToken;
   }
 
   async getApiToken(email, password) {
-    await this.token();
+    await this.getCrumb();
     await this.login(email, password);
-    await this.emoji();
+    await this.generateApiToken();
     return this.apiToken;
   }
 
-  async token() {
+  async getCrumb() {
     const response = await axios.get(urljoin(this.origin, SLACK_LOGIN_FORM), {
       jar: this.jar,
       withCredentials: true
@@ -65,7 +65,7 @@ class SlackTokenGetter {
     }
   }
 
-  async emoji() {
+  async generateApiToken() {
     const response = await axios.get(urljoin(this.origin, SLACK_EMOJI_LIST), {
       jar: this.jar,
       withCredentials: true
