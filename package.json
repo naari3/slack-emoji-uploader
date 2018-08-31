@@ -33,6 +33,10 @@
     "prettier-eslint-cli": "^4.7.1"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2"
+    "@3846masa/axios-cookiejar-support": "^0.3.6",
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "form-data": "^2.3.2",
+    "tough-cookie": "^2.4.3"
   }
 }
