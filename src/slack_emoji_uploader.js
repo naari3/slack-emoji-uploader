@@ -33,8 +33,8 @@ class SlackEmojiUploader {
     const form = new FormData();
     form.append("mode", "alias");
     form.append("name", name);
-    form.append("image", image, `${name}.png`);
     form.append("alias_for", alias_for);
+    form.append("token", this.apiToken);
     const response = await axios.request({
       url: urljoin(this.origin, SLACK_EMOJI_ADD_API),
       method: "post",
