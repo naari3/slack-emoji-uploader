@@ -1,5 +1,5 @@
 {
-  "name": "slack-emoji-upload",
+  "name": "slack-emoji-uploader",
   "version": "0.0.1",
   "description": "",
   "main": "lib/index.js",
@@ -19,7 +19,7 @@
     ]
   },
   "author": "naari3 <naari.named@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
