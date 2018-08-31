@@ -2,6 +2,8 @@
 
 Upload emoji to Slack in node.
 
+[![npm version](https://badge.fury.io/js/slack-emoji-uploader.svg)](https://badge.fury.io/js/slack-emoji-uploader)
+
 ## Install
 
 ```
