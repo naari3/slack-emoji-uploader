@@ -1,20 +1,23 @@
-const axios = require("axios");
-const FormData = require("form-data");
-
-const urljoin = require("url-join");
+import * as axios from "axios";
+import * as FormData from "form-data";
+import * as urljoin from "url-join";
 
 const SLACK_DOMAIN = "slack.com";
 const SLACK_EMOJI_ADD_API = "api/emoji.add";
 const SLACK_EMOJI_REMOVE_API = "api/emoji.remove";
 
-class SlackEmojiUploader {
-  constructor(subdomain, apiToken) {
+export class SlackEmojiUploader {
+  subdomain: string;
+  origin: string;
+  apiToken: string;
+
+  constructor(subdomain: string, apiToken: string) {
     this.subdomain = subdomain;
     this.origin = `https://${subdomain}.${SLACK_DOMAIN}`;
     this.apiToken = apiToken;
   }
 
-  async upload(name, image) {
+  async upload(name: string, image: Blob) {
     const form = new FormData();
     form.append("mode", "data");
     form.append("name", name);
@@ -29,7 +32,7 @@ class SlackEmojiUploader {
     return response.data;
   }
 
-  async alias(name, alias_for) {
+  async alias(name: string, alias_for: string) {
     const form = new FormData();
     form.append("mode", "alias");
     form.append("name", name);
@@ -44,7 +47,7 @@ class SlackEmojiUploader {
     return response.data;
   }
 
-  async remove(name) {
+  async remove(name: string) {
     const form = new FormData();
     form.append("name", name);
     form.append("token", this.apiToken);
@@ -57,5 +60,3 @@ class SlackEmojiUploader {
     return response.data;
   }
 }
-
-module.exports = SlackEmojiUploader;
