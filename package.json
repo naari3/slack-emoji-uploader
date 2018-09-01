@@ -43,8 +43,11 @@
   },
   "dependencies": {
     "@3846masa/axios-cookiejar-support": "^0.3.6",
+    "@types/cheerio": "^0.22.9",
     "@types/form-data": "^2.2.1",
+    "@types/tough-cookie": "^2.3.3",
     "@types/url-join": "^0.8.2",
+    "@types/url-search-params": "^0.10.2",
     "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
     "form-data": "^2.3.2",
