@@ -12,11 +12,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
-    "*.js": [
-      "prettier-eslint --write",
-      "eslint",
-      "git add"
-    ],
     "*.ts": [
       "prettier-tslint fix",
       "git add"
@@ -25,16 +20,9 @@
   "author": "naari3 <naari.named@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "eslint": "^5.4.0",
-    "eslint-config-prettier": "^3.0.1",
-    "eslint-plugin-prettier": "^2.6.2",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.2",
     "prettier": "^1.14.2",
-    "prettier-eslint-cli": "^4.7.1",
     "prettier-tslint": "^0.4.0",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
