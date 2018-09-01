@@ -1,4 +1,4 @@
-import * as axios from "axios";
+import axios from "axios";
 import * as FormData from "form-data";
 import * as urljoin from "url-join";
 
